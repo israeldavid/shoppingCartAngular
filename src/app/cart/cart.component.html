@@ -1,0 +1,27 @@
+<h3>Carrito de Compras</h3>
+
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }}</span>
+  <span>{{ item.price | currency }}</span>
+</div>
+<div><h3>Precios de Envio</h3>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+<div class="shipping-item" *ngFor="let shipping of shippingCosts | async">
+<input type="radio" value="{{ shipping.type }}" name="shipping" required>
+      <label>{{ shipping.type }} - {{ shipping.price | currency }}</label>
+</div>
+<div>
+    <label for="name">
+      Nombre
+    </label>
+    <input id="name" type="text" formControlName="name" required>
+  </div>
+
+  <div>
+    <label for="address">
+      Direccion
+    </label>
+    <input id="address" type="text" formControlName="address">
+  </div>
+<div><button class="button" type="submit">Pagar</button></div>
+</form>
